@@ -35,19 +35,19 @@ class BankAccount {
     }
 }
 
-// const b1 = new BankAccount(1, "nazil", 5000)
-// const b2 = new BankAccount(1, "nazil", 5000)
+const b1 = new BankAccount(1, "nazil", 5000)
+const b2 = new BankAccount(1, "nazil", 5000)
 
-// b1.credit(2000)
-// b2.credit(1500)
+b1.credit(2000)
+b2.credit(1500)
 
-// b1.getAccountInfo()
-// b2.getAccountInfo()
-// // 
-// b1.debit(4000)
-// b2.debit(1200)
+b1.getAccountInfo()
+b2.getAccountInfo()
+// 
+b1.debit(4000)
+b2.debit(1200)
 
-// b1.getAccountInfo()
-// b2.getAccountInfo()
+b1.getAccountInfo()
+b2.getAccountInfo()
 
-// BankAccount.bankDetail
+BankAccount.bankDetail
