@@ -1,10 +1,12 @@
+type accountType = "Saving" | "Current"
+
 class BankAccount {
     static TotalBankHoldingAmount: number = 0
     static TotalAcountHolder: number = 0
     static BankName: string
 
     constructor(
-        public readonly accountNuber: number,
+        public accountNuber: number,
         private accountHolder: string,
         private balance: number,
         protected accountType: string,
@@ -21,7 +23,7 @@ class BankAccount {
     }
 
     credit(amount:number){
-        BankAccount.TotalBankHoldingAmount += amount
+        BankAccount.TotalBankHoldingAmount += balance
         this.amount += amount
     }
     debit(amount:number){
