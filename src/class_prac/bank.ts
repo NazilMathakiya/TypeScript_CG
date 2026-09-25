@@ -1,11 +1,14 @@
 class BankAccount {
     static TotalBankHoldingAmount: number = 0
     static TotalAcountHolder: number = 0
+    static BankName: string
 
     constructor(
-        public id: number,
-        public name: string,
-        public amount: number
+        public readonly accountNuber: number,
+        private accountHolder: string,
+        private balance: number,
+        protected accountType: string,
+        protected overdraftLimit: number
     ){
         console.log("constructor executed!!");
         BankAccount.TotalBankHoldingAmount += amount
