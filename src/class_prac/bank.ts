@@ -38,7 +38,7 @@ class BankAccount {
 const b1 = new BankAccount(1, "nazil", 5000)
 const b2 = new BankAccount(1, "nazil", 5000)
 
-b1.credit(2005)
+b1.credit(2010)
 b2.credit(1500)
 
 b1.getAccountInfo()
