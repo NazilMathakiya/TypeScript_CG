@@ -1,16 +1,11 @@
-type accountType = "Saving" | "Current"
-
 class BankAccount {
     static TotalBankHoldingAmount: number = 0
     static TotalAcountHolder: number = 0
-    static BankName: string
 
     constructor(
-        public accountNuber: number,
-        private accountHolder: string,
-        private balance: number,
-        protected accountType: string,
-        protected overdraftLimit: number
+        public id: number,
+        public name: string,
+        public amount: number
     ){
         console.log("constructor executed!!");
         BankAccount.TotalBankHoldingAmount += amount
@@ -23,7 +18,7 @@ class BankAccount {
     }
 
     credit(amount:number){
-        BankAccount.TotalBankHoldingAmount += balance
+        BankAccount.TotalBankHoldingAmount += amount
         this.amount += amount
     }
     debit(amount:number){
@@ -43,7 +38,7 @@ class BankAccount {
 const b1 = new BankAccount(1, "nazil", 5000)
 const b2 = new BankAccount(1, "nazil", 5000)
 
-b1.credit(2000)
+b1.credit(2005)
 b2.credit(1500)
 
 b1.getAccountInfo()
