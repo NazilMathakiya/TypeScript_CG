@@ -30,7 +30,7 @@ class BankAccount {
         console.log(`name: ${this.name}\nMy_Balance: ${this.amount}`)
     }
     static bankDetail(){
-        console.log(`total account: ${BankAccount.TotalAcountHolder}\ntotal bank holding:${BankAccount.TotalBankHoldingAmount}`);
+        console.log(`total account: ${BankAccount.TotalAcountHolder}\ntotal bank holding is:${BankAccount.TotalBankHoldingAmount}`);
         
     }
 }
