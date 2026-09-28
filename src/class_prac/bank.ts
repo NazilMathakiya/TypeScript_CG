@@ -13,7 +13,7 @@ class BankAccount {
     }
 
     static{
-        console.log("This is static block");
+        console.log("static block");
         
     }
 
