@@ -58,7 +58,7 @@ abstract class BankAccount {
 
 	static bankDetail() {
 		console.log(
-			`Bank Name: ${BankAccount.bank_name}\nTotal Acounts: ${BankAccount.totalAccountHolder}\nTotal Amount: ${BankAccount._totalBankHoldingAmount}`,
+			`Bank Name is: ${BankAccount.bank_name}\nTotal Acounts: ${BankAccount.totalAccountHolder}\nTotal Amount: ${BankAccount._totalBankHoldingAmount}`,
 		);
 	}
 }
