@@ -91,7 +91,7 @@ class CurrentAccount extends BankAccount {
 
 const banckAccounts = [
 	{
-		accountObj: new SavingAccount(1, "satya", 0),
+		accountObj: new SavingAccount(1, "Nazil", 0),
 		transactions: [2000, -2000, 3001, 5000, -6000],
 	},
 	{
