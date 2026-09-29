@@ -1,122 +1,117 @@
+// new account/object => id, name, amount  | credit and debit
+// class level \ Bank Amount
+
+type AccountType = "Saving" | "Current";
+
 abstract class BankAccount {
+	private static _totalBankHoldingAmount: number = 0;
+	private static totalAccountHolder: number = 0;
 
-    private static totalBankAccountHoldingAmount: number = 0
-    private static totalAccountHolder: number = 0
+	public static bank_name: string;
 
-    constructor(
-        public accountNumber: number,
-        public accountHolder: string,
-        protected amount: number,
-        protected accountType: "current" | "saving"
-    ) {
-        BankAccount.totalBankAccountHoldingAmount += amount
-        BankAccount.totalAccountHolder++
-    }
+	protected abstract accountType: AccountType;
 
-    abstract credit(amount: number): void
-    abstract debit(amount: number): void
+	constructor(
+		private readonly accountNumber: number,
+		private _accountHolder: string,
+		private _balance: number,
+	) {
+		// console.log("Contructor Executed");
+		BankAccount._totalBankHoldingAmount += _balance;
+		BankAccount.totalAccountHolder++;
+	}
 
-    getAccountInfo() {
-        console.log(`
-            Account Number: ${this.accountNumber}
-            Account Holder: ${this.accountHolder}
-            Account Type: ${this.accountType}
-            Balance: ${this.amount}
-        `)
-    }
+	set accountHolder(name: string) {
+		if (name.length < 3) {
+			console.log("Name is not valid");
+		}
 
-    
+		this._accountHolder = name.toUpperCase();
+	}
 
-    static BankAccountDetail() {
-        console.log(`
-Total Accounts: ${BankAccount.totalAccountHolder}
-Total Amount: ${BankAccount.totalBankAccountHoldingAmount}
-        `)
-    }
+	get balance() {
+		return this._balance;
+	}
+	set balance(amt: number) {
+		this._balance = amt;
+	}
 
-    protected static addTotalAmount(amount: number) {
-        BankAccount.totalBankAccountHoldingAmount += amount
-    }
+	set totalBankHoldingAmount(amt: number) {
+		BankAccount._totalBankHoldingAmount = amt;
+	}
+	get totalBankHoldingAmount() {
+		return BankAccount._totalBankHoldingAmount;
+	}
+
+	static {
+		BankAccount.bank_name = "SBI";
+	}
+
+	abstract credit(amount: number): void;
+	abstract debit(amount: number): void;
+
+	getAccountInfo() {
+		console.log(
+			`Name: ${this._accountHolder}\nMy_Balance: ${this._balance}\nAccountType: ${this.accountType}\n`,
+		);
+	}
+
+	static bankDetail() {
+		console.log(
+			`Bank Name: ${BankAccount.bank_name}\nTotal Acounts: ${BankAccount.totalAccountHolder}\nTotal Amount: ${BankAccount._totalBankHoldingAmount}`,
+		);
+	}
 }
-
-
 
 class SavingAccount extends BankAccount {
+	protected accountType: AccountType = "Saving";
 
-    constructor(
-        accountNumber: number,
-        accountHolder: string,
-        amount: number
-    ) {
-        super(accountNumber, accountHolder, amount, "saving")
-    }
-
-    credit(amount: number): void {
-        this.amount += amount
-
-        BankAccount.addTotalAmount(amount)
-    }
-
-    debit(amount: number): void {
-        if (this.amount >= amount) {
-            this.amount -= amount
-
-            BankAccount.addTotalAmount(-amount)
-        } else {
-            console.log("Insufficient Balance")
-        }
-    }
+	credit(amount: number) {
+		super.totalBankHoldingAmount += amount;
+		super.balance += amount;
+	}
+	debit(amount: number) {
+		super.totalBankHoldingAmount -= amount;
+		super.balance -= amount;
+	}
 }
-
-
-
 class CurrentAccount extends BankAccount {
+	protected accountType: AccountType = "Current";
 
-    constructor(
-        accountNumber: number,
-        accountHolder: string,
-        amount: number
-    ) {
-        super(accountNumber, accountHolder, amount, "current")
-    }
-
-    credit(amount: number): void {
-        this.amount += amount
-
-        BankAccount.addTotalAmount(amount)
-    }
-
-    debit(amount: number): void {
-        this.amount -= amount
-
-        BankAccount.addTotalAmount(-amount)
-    }
+	credit(amount: number) {
+		super.totalBankHoldingAmount += amount;
+		super.balance += amount;
+	}
+	debit(amount: number) {
+		super.totalBankHoldingAmount -= amount;
+		super.balance -= amount;
+	}
 }
 
 
-const savingAccount1 = new SavingAccount(1, "Jilan", 10000)
-
-const currentAccount2 = new CurrentAccount(2, "Rahul", 10000)
-
-const currentAccount3 = new CurrentAccount(3, "Aman", 10000)
-
-const savingAccount4 = new SavingAccount(4, "Ali", 10000)
-
-
-// Transactions
-
-savingAccount1.credit(1000)
-savingAccount1.debit(2000)
-
-currentAccount2.credit(1000)
-currentAccount2.debit(2000)
-
-currentAccount3.credit(5000)
-currentAccount3.debit(6001)
+const banckAccounts = [
+	{
+		accountObj: new SavingAccount(1, "satya", 0),
+		transactions: [2000, -2000, 3000, 5000, -6000],
+	},
+	{
+		accountObj: new CurrentAccount(1, "Rahul", 0),
+		transactions: [4000, -2000, 3000, 9000, -6000],
+	},
+];
 
 
-savingAccount1.getAccountInfo()
-currentAccount2.getAccountInfo()
-currentAccount3.getAccountInfo()
+banckAccounts.forEach((bankAccount) => {
+	const obj = bankAccount.accountObj
+	const transactions = bankAccount.transactions
 
-BankAccount.BankAccountDetail()
+	transactions.forEach((amount) => {
+		const absAmount = Math.abs(amount);
+		if (amount > 0) {
+			obj.credit(absAmount);
+		} else {
+			obj.debit(absAmount);
+		}
+	});
+	obj.getAccountInfo();
+});
