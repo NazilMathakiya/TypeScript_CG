@@ -39,7 +39,7 @@ const b1 = new BankAccount(1, "nazil", 5000)
 const b2 = new BankAccount(1, "nazil", 1000)
 
 b1.credit(2500)
-b2.credit(1500)
+b2.credit(1501)
 
 b1.getAccountInfo()
 b2.getAccountInfo()
