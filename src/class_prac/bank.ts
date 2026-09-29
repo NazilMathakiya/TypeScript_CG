@@ -27,7 +27,7 @@ class BankAccount {
     }
 
     getAccountInfo(){
-        console.log(`name: ${this.name}\nMy_Balance: ${this.amount}`)
+        console.log(`name: ${this.name}\nMy_Balance is{this.amount}`)
     }
     static bankDetail(){
         console.log(`total account: ${BankAccount.TotalAcountHolder}\ntotal bank holding is:${BankAccount.TotalBankHoldingAmount}`);
@@ -45,7 +45,7 @@ b1.getAccountInfo()
 b2.getAccountInfo()
 // 
 b1.debit(4004)
-b2.debit(1020)
+b2.debit(1021)
 
 b1.getAccountInfo()
 b2.getAccountInfo()
