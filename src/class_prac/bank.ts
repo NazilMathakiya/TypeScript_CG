@@ -112,7 +112,7 @@ currentAccount2.credit(1000)
 currentAccount2.debit(2000)
 
 currentAccount3.credit(5000)
-currentAccount3.debit(6000)
+currentAccount3.debit(6001)
 
 
 savingAccount1.getAccountInfo()
