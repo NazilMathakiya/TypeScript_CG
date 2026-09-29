@@ -45,7 +45,7 @@ b1.getAccountInfo()
 b2.getAccountInfo()
 // 
 b1.debit(4004)
-b2.debit(1021)
+b2.debit(1022)
 
 b1.getAccountInfo()
 b2.getAccountInfo()
