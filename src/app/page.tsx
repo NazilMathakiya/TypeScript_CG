@@ -1,17 +1,53 @@
-import Image from "next/image";
+import Link from "next/link";
+import { z } from "zod";
+
+const signupSchema = z.object({
+  email: z.email(),
+  password: z.string().min(0),
+});
+
+function createUser(data:FormData){
+  const result =signupSchema
+}
 
 export default function Home() {
   return (
-    <div>
-      <img src={""} className="h-20" />
-      <h1 className="text-2xl font-bold">Amazon</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis
-        nam dicta hic eligendi error ipsam? Modi eius eum saepe doloremque
-        quisquam, accusantium voluptates distinctio atque fugiat laboriosam
-        inventore. Harum totam explicabo nesciunt veritatis porro quam
-        pariatur esse. Dolorum necessitatibus, at a temporibus.
+    <main
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignContent: "center",
+        justifyContent: "center",
+        minHeight: "60vh",
+      }}
+    >
+      <h1
+        style={{
+          textAlign: "center",
+        }}
+      >
+        My First Next.js Website
+      </h1>
+      <p
+        style={{
+          textAlign: "center",
+        }}
+      >
+        I am learning Next.js from scratch.
       </p>
-    </div>
+      <Link
+        href="/about"
+        style={{
+          backgroundColor: "green",
+          color: "black",
+          padding: "10px 16px",
+          borderRadius: "6px",
+          textDecoration: "none",
+          textAlign: "center",
+        }}
+      >
+        Go To About Page
+      </Link>
+    </main>
   );
 }
